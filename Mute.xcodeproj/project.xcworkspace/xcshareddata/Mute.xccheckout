@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>E08BDCD6-2497-4D9B-B4C3-EB8DF7825563</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Mute</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>AC679884-E441-48EB-8587-B1A10F70F23A</key>
+		<string>https://github.com/pichfl/Mute</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Mute.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>AC679884-E441-48EB-8587-B1A10F70F23A</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/pichfl/Mute</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>AC679884-E441-48EB-8587-B1A10F70F23A</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>AC679884-E441-48EB-8587-B1A10F70F23A</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Mute</string>
+		</dict>
+	</array>
+</dict>
+</plist>

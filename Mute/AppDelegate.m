@@ -24,16 +24,18 @@
 
 
 OSStatus hotKeyPressedHandler(EventHandlerCallRef nextHandler, EventRef anEvent, void *userData) {
-	if ([[NSApplication sharedApplication].delegate respondsToSelector:@selector(mute:)]) {
-		[[NSApplication sharedApplication].delegate performSelector:@selector(mute:) withObject:nil];
+	if ([[NSApplication sharedApplication].delegate respondsToSelector:@selector(unmute:)]) {
+		[[NSApplication sharedApplication].delegate performSelector:@selector(unmute:) withObject:nil];
 	}
+    
 	return noErr;
 }
 
 OSStatus hotKeyReleasedHandler(EventHandlerCallRef nextHandler, EventRef anEvent, void *userData) {
-	if ([[NSApplication sharedApplication].delegate respondsToSelector:@selector(unmute:)]) {
-		[[NSApplication sharedApplication].delegate performSelector:@selector(unmute:) withObject:nil];
+    if ([[NSApplication sharedApplication].delegate respondsToSelector:@selector(mute:)]) {
+		[[NSApplication sharedApplication].delegate performSelector:@selector(mute:) withObject:nil];
 	}
+
 	return noErr;
 }
 
@@ -46,7 +48,7 @@ OSStatus hotKeyReleasedHandler(EventHandlerCallRef nextHandler, EventRef anEvent
 - (void)awakeFromNib {
 	// Configure your hotkey here, I'm lazy, you know.
 	// Find more keycodes in HIToolbox - Events.h
-	hotKeyCode = kVK_ANSI_KeypadClear; // this is the misterous key above 7 on the numpad
+	hotKeyCode = kVK_ANSI_Grave; // the tick (`) key
 	
 
 	on = [NSImage imageNamed:@"on"];
@@ -82,7 +84,20 @@ OSStatus hotKeyReleasedHandler(EventHandlerCallRef nextHandler, EventRef anEvent
 	myHotKeyID.signature = 'mhk1';
 	myHotKeyID.id = 1;
 
+    // Register our push to talk hotkey
 	RegisterEventHotKey(hotKeyCode, 0, myHotKeyID, GetApplicationEventTarget(), 0, &myHotKeyRef);
+
+    // Mute the microphone after a .25 second delay
+    dispatch_time_t delay = dispatch_time(DISPATCH_TIME_NOW, NSEC_PER_SEC * 0.25);
+    dispatch_after(delay, dispatch_get_main_queue(), ^(void){
+        // Default to muted
+        if (toggleMuteItem.state == NSOffState) {
+            [mixer mute];
+            toggleMuteItem.state = NSOnState;
+            self.statusItem.image = off;
+            self.statusItem.alternateImage = offHighlighted;
+        }
+    });
 }
 
 - (IBAction)mute:(id)sender {
